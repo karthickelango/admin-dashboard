@@ -51,8 +51,11 @@ const Sidebar = () => {
         color: '#868dfb !important'
       },
       "& .pro-menu-item.active": {
-        background: '#6870fa !important'
+        color: '#6870fa !important'
       },
+      ".pro-sidebar .pro-menu .pro-menu-item": {
+        height:'35px'
+      }
     }}>
       <ProSidebar collapsed={isCollapsed}>
         <Menu iconShape='square'>
@@ -87,8 +90,8 @@ const Sidebar = () => {
               <Box display='flex' justifyContent='center' alignItems='center'>
                 <img
                   alt='user-profile'
-                  width='100px'
-                  height='100px'
+                  width='60px'
+                  height='60px'
                   src={`../../assets/user.svg`}
                   style={{ cursor: 'pointer', borderRadius: '50%' }}
                 />
