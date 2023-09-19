@@ -142,12 +142,12 @@ const Sidebar = () => {
               icon={<CalendarTodayOutlinedIcon />}
               selected={selected}
               setSelected={setSelected} />
-            <Item
+            {/* <Item
               title='FAQ Page'
               to='/faq'
               icon={<HelpOutlinedIcon />}
               selected={selected}
-              setSelected={setSelected} />
+              setSelected={setSelected} /> */}
               <Typography variant='h6' color={colors.gray[300]} sx={{ m: "15px 0 5px 20px" }}>Charts</Typography>
             <Item
               title='Bar Chart'

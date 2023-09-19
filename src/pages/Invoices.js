@@ -10,20 +10,12 @@ const Invoices = () => {
   const colors = tokens(theme.palette.mode)
 
   const columns = [
-    { field: 'id', headerName: 'ID', flex: 0.5 },
-    { field: 'registrarId', headerName: 'Registrar ID'},
+    { field: 'id', headerName: 'ID'},
     {
       field: 'name',
       headerName: 'Name',
       flex: 1,
       cellClassName: 'name-column--cell'
-    },
-    {
-      field: 'age',
-      headerName: 'Age',
-      type: 'number',
-      headerAlign: 'left',
-      align: 'left'
     },
     {
       field: 'phone',
@@ -36,26 +28,26 @@ const Invoices = () => {
       flex: 1
     },
     {
-      field: 'address',
-      headerName: 'Address',
-      flex: 1
+      field: 'cost',
+      headerName: 'Cost',
+      flex: 1,
+      renderCell: (params) => (
+        <Typography color={colors.greenAccent[500]}>
+          ${params.row.cost}
+        </Typography>
+      )
     },
     {
-      field: 'city',
-      headerName: 'City',
+      field: 'date',
+      headerName: 'Date',
       flex: 1
-    },
-    {
-      field: 'zipCode',
-      headerName: 'ZipCode',
-      flex: 1
-    },
+    }
   ];
 
   return (
     <Box m='20px'>
       <Box display='flex' justifyContent='space-between' alignItems='center'>
-        <Header title='INVOICES' subtitle='List of Contacts' />
+        <Header title='INVOICES' subtitle='List of Invoices' />
       </Box>
       <Box margin='10px 0 0 0' height='70vh'
       sx={{
@@ -79,14 +71,14 @@ const Invoices = () => {
           borderTop: 'none',
           backgroundColor: colors.blueAccent[700]
         },
-        '& .MuiDataGrid-toolbarContainer .MuiButton-text': {
-          color: `${colors.gray[100]} !important`
+        '& .MuiCheckbox-root': {
+          color: `${colors.greenAccent[200]} !important`
         },
       }}> 
         <DataGrid
           rows={mockDataInvoices}
           columns={columns}
-          components={{Toolbar: GridToolbar}}
+          checkboxSelection
           initialState={{
             pagination: {
               paginationModel: {
