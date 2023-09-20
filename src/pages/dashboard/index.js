@@ -2,7 +2,7 @@ import React from 'react'
 import Header from '../../components/Header'
 import { Box, Button, IconButton, Typography, useTheme } from '@mui/material'
 import { tokens } from '../../theme'
-import {mockTransactions} from '../../data/mockData'
+import { mockTransactions } from '../../data/mockData'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 import DownloadOutlinedIcon from '@mui/icons-material/DownloadOutlined'
 import EmailIcon from '@mui/icons-material/Email'
@@ -39,7 +39,8 @@ const Dashboard = () => {
       </Box>
       {/* GRID & CHARTS */}
       <Box
-        height='70vh'
+        height='75vh'
+        overflow='auto'
         display="grid"
         gridTemplateColumns="repeat(12, 1fr)"
         gridAutoRows="140px"
@@ -167,7 +168,7 @@ const Dashboard = () => {
           gridColumn="span 4"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
-          overflow="auto"
+          overflow="hidden"
         >
           <Box
             display="flex"
