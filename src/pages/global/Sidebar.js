@@ -17,6 +17,7 @@ import PieChartOutlinedIcon from '@mui/icons-material/PieChartOutlined'
 import TimelineOutlinedIcon from '@mui/icons-material/TimelineOutlined'
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined'
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined'
+import profile from '../../../src/assets/user.svg'
 
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
@@ -92,7 +93,7 @@ const Sidebar = () => {
                   alt='user-profile'
                   width='60px'
                   height='60px'
-                  src={`../../assets/user.svg`}
+                  src={profile}
                   style={{ cursor: 'pointer', borderRadius: '50%' }}
                 />
               </Box>
