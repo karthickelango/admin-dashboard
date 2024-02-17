@@ -9,10 +9,21 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined'
 import SearchIcon from '@mui/icons-material/Search'
 
+import { Link, NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+
 const Topbar = () => {
   const theme = useTheme()
   const colors = tokens(theme.palette.mode)
   const colorMode = useContext(ColorModeContext)
+  const isUserSignedIn = localStorage?.getItem('token')
+  const navigate = useNavigate()
+
+  const handelSignOut = () => {
+    localStorage.removeItem('token')
+    navigate('/')
+    window.location.reload()
+  }
 
   return (
     <Box display='flex' justifyContent='space-between' p={2}>
@@ -39,7 +50,7 @@ const Topbar = () => {
           <SettingsOutlinedIcon />
         </IconButton>
         <IconButton>
-          <PersonOutlinedIcon />
+          <button className="btn secondary-btn mt-5" onClick={() => handelSignOut()}>Signout</button>
         </IconButton>
       </Box>
     </Box>
