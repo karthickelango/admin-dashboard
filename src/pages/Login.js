@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { LOGIN_URI, REGISTER_URI } from '../constant/apiurl';
+import LogInImg from '../assets/images/dashboard.svg'
 
 const Login = () => {
     const [name, setName] = useState('')
@@ -21,40 +22,37 @@ const Login = () => {
         axios.get(REGISTER_URI).then((res) => {
         })
     }
-    
+
     const handelLogin = async () => {
         try {
-          const user = {
-            username: name,
-            password: password
-          }
-          const response = await axios.post(LOGIN_URI, user)
-          const token = response.data
-          navigate('/')
-          window.location.reload()
-          localStorage.setItem('token', token)
+            const user = {
+                username: name,
+                password: password
+            }
+            const response = await axios.post(LOGIN_URI, user)
+            const token = response.data
+            navigate('/')
+            window.location.reload()
+            localStorage.setItem('token', token)
         } catch (error) {
-          console.log(error)
-          if (error.response.data.error === "Invalid user name") {
-            setUserMsg(true);
-          } else if (error.response.data.error === "Invalid user password") {
-            setPasswordMsg(true);
-          }
+            console.log(error)
+            if (error.response.data.error === "Invalid user name") {
+                setUserMsg(true);
+            } else if (error.response.data.error === "Invalid user password") {
+                setPasswordMsg(true);
+            }
         }
-      } 
-      const toggleState = () => {
+    }
+    const toggleState = () => {
         setShowPassword(!showPassword);
-      };
+    };
     return (
         <>
-            <div className='container mt-30'>
-                <div className="" style={{ maxWidth: '35%', margin: '0 auto', border: 'none' }}>
+            <div className='w100 mt-30'>
+                <div className="" style={{ maxWidth: '90%', margin: '0 auto', border: 'none' }}>
                     <div className="row g-0">
                         <h2 className='b-logo'>Dashboard</h2>
-                        <div className='my-3 label-item'>
-                            <Link to="/signup" className='btn secondary-btn p-30'>Create account</Link>
-                        </div>
-                        <div className="col-md-12 align-content-center" style={{}}>
+                        <div className="col-md-4 align-content-center aic" style={{}}>
                             <div className="card-body">
                                 <h3 className='my-3 title mb-0'>Login</h3>
                                 {
@@ -74,11 +72,16 @@ const Login = () => {
                                     {/* <Link>Forgrt password?</Link> */}
                                     <button className='btn primary-btn text-center' onClick={() => handelLogin()}>Login</button>
                                 </div>
+
+                                <div className='my-3 label-item text-center'>
+                                    Don't have an account ?
+                                    <Link to="/signup" className='text-color-primary ps-2'>Create one</Link>
+                                </div>
                             </div>
                         </div>
-                        {/* <div className="col-md-8 align-content-center">
+                        <div className="col-md-8 align-content-center flex-center">
                             <img src={LogInImg} className="img-fluid rounded-start" alt="..." />
-                        </div> */}
+                        </div>
                     </div>
                 </div>
             </div>

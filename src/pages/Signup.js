@@ -41,9 +41,6 @@ const Signup = () => {
                 <div className="" style={{ maxWidth: '35%', margin: '0 auto', border: 'none' }}>
                     <div className="row g-0">
                         <h2 className='b-logo'>Dashboard</h2>
-                        <div className='my-3 label-item'>
-                            <Link to="/" className='btn secondary-btn p-30'>Login</Link>
-                        </div>
                         <div className="col-md-12 align-content-center" style={{}}>
                             <div className="card-body">
                                 <h3 className='my-3 title'>Create Account</h3>
@@ -62,8 +59,12 @@ const Signup = () => {
                                         passwordMatch ? <h1 className="text-color-primary error-msg">Password doesn't match</h1> : <h1 className='py-4'></h1>
                                     }
                                 </div>
-                                <div className='text-end'>
+                                <div className='text-center'>
                                     <button className='btn primary-btn' onClick={() => handelSignup()}>Sign up</button>
+                                </div>
+                                <div className='my-3 label-item text-center'>
+                                    Have an account?
+                                    <Link to="/" className='text-color-primary ps-2'>Login</Link>
                                 </div>
                             </div>
                         </div>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react'
 import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar'
 import 'react-pro-sidebar/dist/css/styles.css'
@@ -18,6 +18,7 @@ import TimelineOutlinedIcon from '@mui/icons-material/TimelineOutlined'
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined'
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined'
 import profile from '../../../src/assets/user.svg'
+import DataContext from '../../context/DataContext'
 
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
@@ -36,6 +37,7 @@ const Sidebar = () => {
   const colors = tokens(theme.palette.mode)
   const [isCollapsed, setIsCollapsed] = useState(false)
   const [selected, setSelected] = useState('Dashboard')
+  const {userDetail} = useContext(DataContext)
 
   return (
     <Box sx={{
@@ -98,8 +100,7 @@ const Sidebar = () => {
                 />
               </Box>
               <Box textAlign='center'>
-                <Typography variant='h3' color={colors.gray[100]} fontWeight='bold' mt="10px">Karthick</Typography>
-                <Typography variant='h5' color={colors.greenAccent[500]}>Elango</Typography>
+                <Typography variant='h3' color={colors.gray[100]} fontWeight='bold' mt="10px">{userDetail.username}</Typography>
               </Box>
             </Box>
           )}
