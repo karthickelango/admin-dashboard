@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --primary-color: #213542;
+    --secondary-color: #596e7d;
+    --primary-blue: #0291D9;
+    --secondary-blue: #5EC4F3;
+    --white: #ffffff;
+    --background: #FCFAFF;
+    --black: #000000;
+    --btn-background: #F5F0FF;
+    --light-gray: #D3D3D3;
+}
+
 /* scroll bar style */
 ::-webkit-scrollbar {
     width: 10px;
@@ -242,6 +254,10 @@
     border: 1px solid #c6c6c6 !important;
     padding: 3px 15px;
 }
+.camera-icon {
+    position: absolute;
+    bottom: 60px;
+}
 .image-container {
     display: flex;
     align-items: center;
@@ -261,3 +277,6 @@
         }
     }
 } 
+.font-semibold, .font-bold {
+    color: var(--primary-color);
+}

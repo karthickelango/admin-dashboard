@@ -3,27 +3,30 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Fragment, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import Camera from '../assets/images/camera.svg'
-import Upload from '../assets/images/upload.svg'
 import DataContext from '../context/DataContext'
-import { UPLOAD_URI } from '../constant/apiurl'
+import { UPDATE_INFO } from '../constant/apiurl'
+import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 
-const UploadImage = () => {
+const InfoUpdate = () => {
     const { userDetail } = useContext(DataContext)
     const [isLoading, setIsLoading] = useState(false)
-    const [tweet, setTweet] = useState('')
     const navigate = useNavigate()
     const { id } = useParams()
     const [open, setOpen] = useState(false)
     const cancelButtonRef = useRef(null)
-    const [file, setFile] = useState()
 
-    // handel profile image
-    const handelUpload = async () => {
-        const formData = new FormData()
-        formData.append('file', file)
+    const [about, setAbout] = useState('')
+    const [role, setRole] = useState('')
+    const [contact, setContact] = useState('')
+
+    const handelUpdateInfo = async () => {
+        const info = {
+            about: about,
+            role: role,
+            contact: contact
+        }
         try {
-            const response = await axios.put(`${UPLOAD_URI}/${userDetail._id}`, formData)
+            const response = await axios.put(`${UPDATE_INFO}/${userDetail._id}`, info)
             if (response.status >= 200 && response.status <= 299) {
                 setOpen(false)
                 window.location.reload();
@@ -35,15 +38,14 @@ const UploadImage = () => {
 
     const handelClose = () => {
         setOpen(false)
-        setFile('')
     }
     useEffect(() => {
     }, [])
 
     return (
         <>
-            <span className='camera-icon' onClick={() => setOpen(!open)} >
-                <img src={Camera} style={{ width: '30px', cursor: 'pointer' }} />
+            <span className='edit-info text-end' onClick={() => setOpen(!open)} >
+                Edit info
             </span>
             <Transition.Root show={open} as={Fragment}>
                 <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setOpen}>
@@ -74,19 +76,11 @@ const UploadImage = () => {
                                     <div className="bg-white">
                                         <div className="p-6 text-center" >
                                             <h3 className="text-lg font-normal text-gray-500 dark:text-gray-400 image-container" >
-                                                <label htmlFor="upload">
-                                                    {
-                                                        file ?
-                                                            <img src={URL.createObjectURL(file)} />
-                                                            :
-                                                            <img src={Upload} />
-                                                    }
-                                                    <input type='file' id='upload' onChange={(e) => setFile(e.target.files[0])} style={{ display: 'none' }} />
-                                                </label>
+                                                Here we go
                                             </h3>
                                             <div className='justify-content-sp'>
                                                 <button onClick={() => handelClose()} data-modal-hide="popup-modal" type="button" className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600 mr-2 btn secondary-btn">Cancel</button>
-                                                <button onClick={() => handelUpload()} data-modal-hide="popup-modal" type="button" className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg inline-flex items-center px-5 py-2.5 text-center btn primary-btn">
+                                                <button onClick={() => handelUpdateInfo()} data-modal-hide="popup-modal" type="button" className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg inline-flex items-center px-5 py-2.5 text-center btn primary-btn">
                                                     Upload
                                                 </button>
                                             </div>
@@ -103,4 +97,4 @@ const UploadImage = () => {
     )
 }
 
-export default UploadImage
+export default InfoUpdate
