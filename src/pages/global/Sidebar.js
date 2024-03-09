@@ -90,15 +90,6 @@ const Sidebar = () => {
           {/* USER */}
           {!isCollapsed && (
             <Box mb='25px'>
-              <Box display='flex' justifyContent='center' alignItems='center'>
-                <img
-                  alt='user-profile'
-                  width='60px'
-                  height='60px'
-                  src={profile}
-                  style={{ cursor: 'pointer', borderRadius: '50%' }}
-                />
-              </Box>
               <Box textAlign='center'>
                 <Typography variant='h3' color={colors.gray[100]} fontWeight='bold' mt="10px">{userDetail.username}</Typography>
               </Box>

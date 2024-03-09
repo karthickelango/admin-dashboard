@@ -18,6 +18,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { DataProvider } from "./context/DataContext";
 import './assets/style/style.scss'
+import MyAccount from "./pages/MyAccount";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -51,6 +52,7 @@ function App() {
                       <Route path="/pie" element={<Pie />} />
                       <Route path="/geography" element={<Geography />} />
                       <Route path="/calendar" element={<Calendar />} />
+                      <Route path="/myaccount" element={<MyAccount />}/>
                     </Routes>
                   </main>
                 </>
