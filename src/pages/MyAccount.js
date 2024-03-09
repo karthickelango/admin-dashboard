@@ -20,19 +20,33 @@ const MyAccount = () => {
                         />
                         <UploadImage />
                         <h1 className="text-xl font-bold mt-4">{userDetail.username}</h1>
-                        <p className="text-gray-600 text-sm">Frontend developer</p>
+                        <p className="text-gray-600 text-sm">
+                            {
+                                userDetail.role === null ? 'Add role' :
+                                    <>{userDetail.role}</>
+                            }
+                        </p>
                     </div>
                     <div>
                         <h2 className="text-lg font-semibold mb-2">About Me <InfoUpdate /></h2>
                         <p className="text-gray-600">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                            {
+                                userDetail.about === null ? 'Add about' :
+                                    <>{userDetail.about}</>
+                            }
                         </p>
                     </div>
                     <div className="mt-4">
                         <h2 className="text-lg font-semibold mb-2">Contact</h2>
                         <p className="text-gray-600">
-                            Email: {userDetail.email}<br />
-                            Phone: 123-456-7890
+                            Email: {
+                                userDetail.email === null ? 'Add about' :
+                                    <>{userDetail.email}</>
+                            }<br />
+                            Phone: {
+                                userDetail.contact === null ? 'Add about' :
+                                    <>{userDetail.contact}</>
+                            }
                         </p>
                     </div>
                 </div>

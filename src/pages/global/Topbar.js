@@ -24,7 +24,6 @@ const Topbar = () => {
   const open = Boolean(profileMenu);
   const isUserSignedIn = localStorage?.getItem('token')
   const navigate = useNavigate()
-  console.log(userDetail)
 
   // handel logout
   const handelSignOut = () => {
