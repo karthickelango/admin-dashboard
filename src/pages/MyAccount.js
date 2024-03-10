@@ -3,13 +3,11 @@ import UploadImage from './uploadImage'
 import { BASE_URL } from '../constant/apiurl'
 import DataContext from '../context/DataContext'
 import InfoUpdate from './InfoUpdate'
+import defaultAvatar from '../assets/images/defaultAvatar.svg'
 
 
 const MyAccount = () => {
     const { userDetail } = useContext(DataContext)
-    useEffect(() => {
-
-    }, [userDetail])
     return (
         <div>
             <div className="min-h-screen flex flex-col justify-center items-center">
@@ -17,7 +15,7 @@ const MyAccount = () => {
                     <div className="mb-4 text-center position-relative">
                         <img
                             className="w-32 h-32 rounded-full mx-auto"
-                            src={`${BASE_URL}/${userDetail.avatar}`}
+                            src={userDetail.avatar === null ? defaultAvatar : `${BASE_URL}/${userDetail.avatar}`}
                             alt="Profile"
                         />
                         <UploadImage />
