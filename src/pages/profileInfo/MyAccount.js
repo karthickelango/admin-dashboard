@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import UploadImage from './uploadImage'
-import { BASE_URL } from '../constant/apiurl'
-import DataContext from '../context/DataContext'
+import { BASE_URL } from '../../constant/apiurl'
 import InfoUpdate from './InfoUpdate'
-import defaultAvatar from '../assets/images/defaultAvatar.svg'
+import defaultAvatar from '../../assets/images/defaultAvatar.svg'
+import DataContext from '../../context/DataContext'
 
 
 const MyAccount = () => {

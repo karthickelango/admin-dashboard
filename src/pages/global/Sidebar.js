@@ -87,14 +87,6 @@ const Sidebar = () => {
               </Box>
             )}
           </MenuItem>
-          {/* USER */}
-          {!isCollapsed && (
-            <Box mb='25px'>
-              <Box textAlign='center'>
-                <Typography variant='h3' color={colors.gray[100]} fontWeight='bold' mt="10px">{userDetail.username}</Typography>
-              </Box>
-            </Box>
-          )}
           {/* Menu items */}
           <Box paddingLeft={isCollapsed ? undefined : '10%'}>
             <Item

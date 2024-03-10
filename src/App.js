@@ -18,7 +18,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { DataProvider } from "./context/DataContext";
 import './assets/style/style.scss'
-import MyAccount from "./pages/MyAccount";
+import MyAccount from "./pages/profileInfo/MyAccount";
 
 function App() {
   const [theme, colorMode] = useMode();

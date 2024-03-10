@@ -67,8 +67,8 @@ const Topbar = () => {
             aria-controls={open ? 'basic-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
-            onClick={handleClick} 
-            style={{width: '30px', height: '30px'}}/>
+            onClick={handleClick}
+            style={{ width: '30px', height: '30px' }} />
           <Menu
             id="menu"
             profileMenu={profileMenu}
@@ -83,7 +83,6 @@ const Topbar = () => {
               horizontal: 'right',
             }}
           >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
             <MenuItem onClick={handleClose}><Link to='/myaccount'>My account</Link></MenuItem>
             <MenuItem onClick={() => handelSignOut()}>Logout</MenuItem>
           </Menu>

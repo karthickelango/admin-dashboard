@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Header from '../../components/Header'
 import { Box, Button, IconButton, Typography, useTheme } from '@mui/material'
 import { tokens } from '../../theme'
 import { mockTransactions } from '../../data/mockData'
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 import DownloadOutlinedIcon from '@mui/icons-material/DownloadOutlined'
 import EmailIcon from '@mui/icons-material/Email'
 import PointOfSaleIcon from '@mui/icons-material/PointOfSale'
@@ -14,14 +13,16 @@ import BarChart from '../../components/BarChart'
 import GeographyChart from '../../components/GeographyChart'
 import StatBox from '../../components/StateBox'
 import ProgressCircle from '../../components/ProgressCircle'
+import DataContext from '../../context/DataContext'
 
 const Dashboard = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const { userDetail } = useContext(DataContext)
   return (
     <Box m='20px'>
       <Box display='flex' justifyContent='space-between' alignItems='center'>
-        <Header title='DASHBOARD' subtitle='Welcome to your dashboard' />
+        <Header title='DASHBOARD' subtitle={`Welcome ${userDetail.username}`}  />
         <Box>
           <Button
             sx={{
