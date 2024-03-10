@@ -39,10 +39,11 @@ export const DataProvider = ({ children }) => {
 
   useEffect(() => {
     getUserDetails()
-  }, [])
+  }, [activeUser])
+  
   
     return (
-        <DataContext.Provider value={{ userDetail }}>
+        <DataContext.Provider value={{ userDetail, getUserDetails }}>
             {children}
         </DataContext.Provider>
     )

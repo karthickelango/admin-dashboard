@@ -48,7 +48,7 @@ const Login = () => {
     };
     return (
         <>
-            <div className='w100 mt-30'>
+            <div className='w100 mt-30 login-page'>
                 <div className="" style={{ maxWidth: '90%', margin: '0 auto', border: 'none' }}>
                     <div className="row g-0">
                         <h2 className='b-logo'>Dashboard</h2>
