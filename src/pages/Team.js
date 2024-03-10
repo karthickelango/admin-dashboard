@@ -1,34 +1,39 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Typography, Box, useTheme } from '@mui/material'
 import { tokens } from '../theme'
-import { DataGrid } from '@mui/x-data-grid'
-import { mockDataTeam } from '../data/mockData'
+import { DataGrid, GridActionsCellItem, GridRowModes } from '@mui/x-data-grid'
 import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined'
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined'
-import SecurityOutlinedIcon from '@mui/icons-material/SecurityOutlined'
 import Header from '../components/Header'
+import DataContext from '../context/DataContext'
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SaveIcon from '@mui/icons-material/Save';
+import CancelIcon from '@mui/icons-material/Close';
 
 const Team = () => {
   const theme = useTheme()
   const colors = tokens(theme.palette.mode)
+  const { processedData } = useContext(DataContext)
+
+  const handleEditClick = (id) => () => {
+    console.log('edit')
+  }
+  const handleDeleteClick = (id) => () => {
+    console.log('Delete')
+  }
+
 
   const columns = [
-    { field: 'id', headerName: 'ID' },
+    { field: '_id', headerName: 'ID' },
     {
-      field: 'name',
+      field: 'username',
       headerName: 'Name',
       flex: 1,
       cellClassName: 'name-column--cell'
     },
     {
-      field: 'age',
-      headerName: 'Age',
-      type: 'number',
-      headerAlign: 'left',
-      align: 'left'
-    },
-    {
-      field: 'phone',
+      field: 'contact',
       headerName: 'Phone Number',
       flex: 1
     },
@@ -38,10 +43,10 @@ const Team = () => {
       flex: 1
     },
     {
-      field: 'access',
+      field: 'userType',
       headerName: 'Access Level',
       flex: 1,
-      renderCell: ({ row: { access } }) => {
+      renderCell: ({ row: { userType } }) => {
         return (
           <Box
             width='100px'
@@ -50,52 +55,77 @@ const Team = () => {
             display='flex'
             justifyContent='center'
             backgroundColor={
-              access === 'admin'
+              userType === 'admin'
                 ? colors.greenAccent[600] : colors.greenAccent[700]
             }
           >
-            {access === 'admin' && <AdminPanelSettingsOutlinedIcon />}
-            {access === 'manager' && <SecurityOutlinedIcon />}
-            {access === 'user' && <LockOpenOutlinedIcon />}
+            {userType === 'Admin' && <AdminPanelSettingsOutlinedIcon />}
+            {/* {access === 'manager' && <SecurityOutlinedIcon />} */}
+            {userType === 'User' && <LockOpenOutlinedIcon />}
             <Typography color={colors.gray[100]} sx={{ ml: '5px' }}>
-              {access}
+              {userType}
             </Typography>
           </Box>
         )
       }
+    },
+    {
+      field: 'actions',
+      type: 'actions',
+      headerName: 'Actions',
+      width: 100,
+      cellClassName: 'actions',
+      getActions: ({ id }) => {
+
+        return [
+          <GridActionsCellItem
+            icon={<EditIcon />}
+            label="Edit"
+            className="textPrimary"
+            onClick={handleEditClick(id)}
+            color="inherit"
+          />,
+          <GridActionsCellItem
+            icon={<DeleteIcon />}
+            label="Delete"
+            onClick={handleDeleteClick(id)}
+            color="inherit"
+          />,
+        ];
+      },
     },
   ];
 
   return (
     <Box m='20px'>
       <Box display='flex' justifyContent='space-between' alignItems='center'>
-        <Header title='TEAM' subtitle='Managing the Team Menbers' />
+        <Header title='TEAM' subtitle='Managing the Team Members' />
       </Box>
       <Box margin='10px 0 0 0' height='50vh'
-      sx={{
-        '& .MuiDataGrid-root': {
-          border: 'none'
-        },
-        '& .MuiDataGrid-cell': {
-          borderBottom: 'none'
-        },
-        '& .name-column--cell': {
-          color: colors.greenAccent[300]
-        },
-        '& .MuiDataGrid-columnHeaders': {
-          borderBottom: 'none',
-          backgroundColor: colors.blueAccent[700]
-        },
-        '& .MuiDataGrid-virtualScroller': {
-          backgroundColor: colors.primary[400]
-        },
-        '& .MuiDataGrid-footerContainer': {
-          borderTop: 'none',
-          backgroundColor: colors.blueAccent[700]
-        },
-      }}>
+        sx={{
+          '& .MuiDataGrid-root': {
+            border: 'none'
+          },
+          '& .MuiDataGrid-cell': {
+            borderBottom: 'none'
+          },
+          '& .name-column--cell': {
+            color: colors.greenAccent[300]
+          },
+          '& .MuiDataGrid-columnHeaders': {
+            borderBottom: 'none',
+            backgroundColor: colors.blueAccent[700]
+          },
+          '& .MuiDataGrid-virtualScroller': {
+            backgroundColor: colors.primary[400]
+          },
+          '& .MuiDataGrid-footerContainer': {
+            borderTop: 'none',
+            backgroundColor: colors.blueAccent[700]
+          },
+        }}>
         <DataGrid
-          rows={mockDataTeam}
+          rows={processedData}
           columns={columns}
           initialState={{
             pagination: {

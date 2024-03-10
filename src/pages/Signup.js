@@ -10,13 +10,20 @@ const Signup = () => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [passwordMatch, setPasswordMatch] = useState(false)
+    const [userType, setUserType] = useState('User')
+    const [secretKey, setSecretKey] = useState('')
 
     const navigate = useNavigate()
     const handelSignup = async () => {
+        if(userType == 'Admin' && secretKey!='Karthick') {
+            alert('Invalid Admin')
+            return
+        }
         const newUser = {
             email: email,
             username: name,
-            password: password
+            password: password,
+            userType: userType
         }
         if (password === confirmPassword) {
             try {
@@ -44,6 +51,17 @@ const Signup = () => {
                         <div className="col-md-12 align-content-center" style={{}}>
                             <div className="card-body">
                                 <h3 className='my-3 title'>Create Account</h3>
+                                <div className="mb-4">
+                                    Register as:
+                                    <input type="radio" name="userType" className='ms-3 me-1' value="User" onChange={(e) => setUserType(e.target.value)} />User
+                                    <input type="radio" name="userType" className='ms-3 me-1' value="Admin" onChange={(e) => setUserType(e.target.value)} />Admin
+                                </div>
+                                {
+                                    userType === 'Admin' ?
+                                        <div className="mb-4">
+                                            <input type="text" placeholder='Secret key' className="form-control" id="key" value={secretKey} onChange={(e) => setSecretKey(e.target.value)} />
+                                        </div> : ''
+                                }
                                 <div className="mb-4">
                                     <input type="text" placeholder='Name' className="form-control" id="name" value={name} onChange={(e) => setName(e.target.value)} />
                                 </div>
