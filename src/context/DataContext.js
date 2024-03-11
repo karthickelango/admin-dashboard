@@ -66,7 +66,7 @@ export const DataProvider = ({ children }) => {
 
 
   return (
-    <DataContext.Provider value={{ userDetail, getUserDetails, processedData }}>
+    <DataContext.Provider value={{ userDetail, getUserDetails, processedData, isLoading, setIsLoading, allUser, setAllUser }}>
       {children}
     </DataContext.Provider>
   )

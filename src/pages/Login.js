@@ -7,7 +7,7 @@ import { LOGIN_URI, REGISTER_URI } from '../constant/apiurl';
 import LogInImg from '../assets/images/dashboard.svg'
 
 const Login = () => {
-    const [name, setName] = useState('')
+    const [email, setemail] = useState('')
     const [password, setPasword] = useState('')
     const [userMsg, setUserMsg] = useState(false)
     const [passwordMsg, setPasswordMsg] = useState(false)
@@ -26,7 +26,7 @@ const Login = () => {
     const handelLogin = async () => {
         try {
             const user = {
-                username: name,
+                email: email,
                 password: password
             }
             const response = await axios.post(LOGIN_URI, user)
@@ -59,7 +59,7 @@ const Login = () => {
                                     userMsg ? <h1 className="py-4 text-color-primary text-center">User doesn't exist</h1> : <h1 className='py-4'></h1>
                                 }
                                 <div className="mb-4">
-                                    <input type="text" placeholder='username' className="form-control" id="username" value={name} onChange={(e) => setName(e.target.value)} />
+                                    <input type="email" placeholder='Email' className="form-control" id="email" value={email} onChange={(e) => setemail(e.target.value)} />
                                 </div>
                                 <div className="mb-4 position-relative">
                                     <input type={!showPassword ? "password" : "text"} placeholder='password' className="form-control" id="password" value={password} onChange={(e) => setPasword(e.target.value)} />

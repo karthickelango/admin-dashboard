@@ -8,5 +8,6 @@ export const LOGIN_URI = BASE_URL + "/login";
 export const USER_LIST = BASE_URL + "/users";
 export const UPLOAD_URI = BASE_URL + "/upload"
 export const UPDATE_INFO = BASE_URL + "/info"
+export const DELETE_USER = BASE_URL + "/user"
 
 

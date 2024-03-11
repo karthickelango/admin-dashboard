@@ -10,20 +10,31 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SaveIcon from '@mui/icons-material/Save';
 import CancelIcon from '@mui/icons-material/Close';
+import axios from 'axios'
+import { DELETE_USER } from '../constant/apiurl'
 
 const Team = () => {
   const theme = useTheme()
   const colors = tokens(theme.palette.mode)
-  const { processedData } = useContext(DataContext)
+  const { processedData, userDetail, setIsLoading, setAllUser, allUser } = useContext(DataContext)
 
   const handleEditClick = (id) => () => {
     console.log('edit')
   }
-  const handleDeleteClick = (id) => () => {
-    console.log('Delete')
+  const handleDeleteClick = (id) => async () => {
+    try {
+      setIsLoading(true)
+      const response = await axios.delete(`${DELETE_USER}/${id}`)
+      if (response.status >= 200 && response.status <= 299) {
+        setAllUser(allUser.filter(user => user._id !== id));
+        setIsLoading(false)
+      }
+    } catch (error) {
+      console.log(error)
+      setIsLoading(false)
+    }
   }
-
-
+  
   const columns = [
     { field: '_id', headerName: 'ID' },
     {
@@ -75,23 +86,25 @@ const Team = () => {
       headerName: 'Actions',
       width: 100,
       cellClassName: 'actions',
-      getActions: ({ id }) => {
-
-        return [
-          <GridActionsCellItem
-            icon={<EditIcon />}
-            label="Edit"
-            className="textPrimary"
-            onClick={handleEditClick(id)}
-            color="inherit"
-          />,
-          <GridActionsCellItem
-            icon={<DeleteIcon />}
-            label="Delete"
-            onClick={handleDeleteClick(id)}
-            color="inherit"
-          />,
-        ];
+      renderCell: ({ id }) => {
+        if (userDetail.userType === 'Admin') {
+          return [
+            <GridActionsCellItem
+              icon={<EditIcon />}
+              label="Edit"
+              className="textPrimary"
+              onClick={handleEditClick(id)}
+              color="inherit"
+            />,
+            <GridActionsCellItem
+              icon={<DeleteIcon />}
+              label="Delete"
+              onClick={handleDeleteClick(id)}
+              color="inherit"
+            />,
+          ];
+        }
+        return null
       },
     },
   ];
