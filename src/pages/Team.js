@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Typography, Box, useTheme } from '@mui/material'
+import { Typography, Box, useTheme, Button } from '@mui/material'
 import { tokens } from '../theme'
 import { DataGrid, GridActionsCellItem, GridRowModes } from '@mui/x-data-grid'
 import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined'
@@ -8,10 +8,9 @@ import Header from '../components/Header'
 import DataContext from '../context/DataContext'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import SaveIcon from '@mui/icons-material/Save';
-import CancelIcon from '@mui/icons-material/Close';
 import axios from 'axios'
 import { DELETE_USER } from '../constant/apiurl'
+import { ShoppingCartRounded } from '@mui/icons-material'
 
 const Team = () => {
   const theme = useTheme()
@@ -34,7 +33,7 @@ const Team = () => {
       setIsLoading(false)
     }
   }
-  
+
   const columns = [
     { field: '_id', headerName: 'ID' },
     {
@@ -114,6 +113,9 @@ const Team = () => {
       <Box display='flex' justifyContent='space-between' alignItems='center'>
         <Header title='TEAM' subtitle='Managing the Team Members' />
       </Box>
+      <Button variant="text" startIcon={<ShoppingCartRounded />}>
+        Add item
+      </Button>
       <Box margin='10px 0 0 0' height='50vh'
         sx={{
           '& .MuiDataGrid-root': {
