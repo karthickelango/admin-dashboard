@@ -38,8 +38,8 @@ const UserMenu = () => {
   return (
     <Box sx={{ borderTop: `1px solid ${colors.primary[900]}` }}>
       <div className={theme.palette.mode === "dark" ? 'dark-mode user-menu' : 'light-mode user-menu'}>
-        <div style={{ display: 'flex', alignItems: 'center', padding:'10px' }} onClick={handleClick}>
-          <Avatar alt={userDetail.username} src={`${BASE_URL}/${userDetail.avatar}`}
+        <div style={{ display: 'flex', alignItems: 'center', padding: '10px' }} onClick={handleClick}>
+          <Avatar alt={userDetail.username} src={ userDetail.avatar != null ? `${BASE_URL}/${userDetail.avatar}` : '' }
             id="basic-button"
             aria-controls={open ? 'basic-menu' : undefined}
             aria-haspopup="true"
@@ -69,7 +69,6 @@ const UserMenu = () => {
           }}
         >
           <MenuItem onClick={handleClose}><Link to='/myaccount'>My account</Link></MenuItem>
-          <MenuItem onClick={() => handelSignOut()}>Logout</MenuItem>
           <MenuItem onClick={handleClose}>
             {/* icons */}
             <Box display='flex'>
@@ -88,6 +87,7 @@ const UserMenu = () => {
               </div>
             </Box>
           </MenuItem>
+          <MenuItem onClick={() => handelSignOut()}>Logout</MenuItem>
         </Menu>
       </div>
     </Box>
