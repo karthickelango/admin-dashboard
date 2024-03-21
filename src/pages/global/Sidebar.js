@@ -52,7 +52,7 @@ const Sidebar = () => {
         backgroundColor: 'transparent !important'
       },
       "& .pro-inner-item": {
-        padding: '5px 35px 5px 20px !important',
+        padding: '0px 35px 5px 20px !important',
         margin: '5px 0px'
       },
       ".pro-sidebar .pro-menu .pro-menu-item": {

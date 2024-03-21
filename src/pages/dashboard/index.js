@@ -141,7 +141,7 @@ const Dashboard = () => {
             display="flex"
             justifyContent="space-between"
             alignItems="center"
-            borderBottom={`4px solid ${colors.primary[500]}`}
+            borderBottom={`1px solid ${colors.primary[900]}`}
             colors={colors.gray[100]}
             p="15px"
           >
