@@ -22,7 +22,7 @@ const Dashboard = () => {
   return (
     <Box m='20px'>
       <Box display='flex' justifyContent='space-between' alignItems='center'>
-        <Header title='DASHBOARD' subtitle={`Welcome ${userDetail.username}`}  />
+        <Header title='DASHBOARD' />
         <Box>
           <Button
             sx={{
@@ -40,7 +40,7 @@ const Dashboard = () => {
       </Box>
       {/* GRID & CHARTS */}
       <Box
-        height='75vh'
+        height='85vh'
         overflow='auto'
         display="grid"
         gridTemplateColumns="repeat(12, 1fr)"

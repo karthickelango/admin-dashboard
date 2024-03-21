@@ -1,15 +1,10 @@
 import { React, useContext, useState } from 'react'
 import { Avatar, Box, IconButton, Menu, MenuItem, useTheme } from '@mui/material'
 import { ColorModeContext, tokens } from '../../theme'
-import InputBase from '@mui/material/InputBase'
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined'
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined'
-import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined'
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
-import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined'
-import SearchIcon from '@mui/icons-material/Search'
-import profile from '../../../src/assets/user.svg'
 import DataContext from '../../context/DataContext'
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 import { Link, NavLink } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
@@ -41,15 +36,24 @@ const UserMenu = () => {
   };
 
   return (
-    <Box display='flex' justifyContent='space-between' p={2}>
-      <div style={{ position: 'relative' }}>
-        <Avatar alt={userDetail.username} src={`${BASE_URL}/${userDetail.avatar}`}
-          id="basic-button"
-          aria-controls={open ? 'basic-menu' : undefined}
-          aria-haspopup="true"
-          aria-expanded={open ? 'true' : undefined}
-          onClick={handleClick}
-          style={{ width: '30px', height: '30px' }} />
+    <Box sx={{ borderTop: `1px solid ${colors.primary[900]}` }}>
+      <div className={theme.palette.mode === "dark" ? 'dark-mode user-menu' : 'light-mode user-menu'}>
+        <div style={{ display: 'flex', alignItems: 'center', padding:'10px' }} onClick={handleClick}>
+          <Avatar alt={userDetail.username} src={`${BASE_URL}/${userDetail.avatar}`}
+            id="basic-button"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            style={{ width: '30px', height: '30px', marginRight: '15px' }} />
+          <div>
+            <div style={{ fontSize: '14px', fontWeight: '600', color: theme.palette.mode === "dark" ? '#ffffff' : '#000' }}>{userDetail.username}</div>
+            <div style={{ fontSize: '14px', fontWeight: '500', color: theme.palette.mode === "dark" ? '#ffffff' : '#000' }}>{userDetail.email}</div>
+          </div>
+          <MoreVertIcon
+            style={{ marginLeft: '20px', cursor: 'pointer' }}
+            sx={{ color: theme.palette.mode === "dark" ? '#ffffff' : '#0009', fontSize: 20 }}
+          />
+        </div>
         <Menu
           id="menu"
           profileMenu={profileMenu}
@@ -66,19 +70,19 @@ const UserMenu = () => {
         >
           <MenuItem onClick={handleClose}><Link to='/myaccount'>My account</Link></MenuItem>
           <MenuItem onClick={() => handelSignOut()}>Logout</MenuItem>
-          <MenuItem>
+          <MenuItem onClick={handleClose}>
             {/* icons */}
             <Box display='flex'>
               <div onClick={colorMode.toggleColorMode}>
                 {theme.palette.mode === 'dark' ? (
                   <>
-                  <span>Dark</span>
-                  <DarkModeOutlinedIcon />
+                    <span>Dark</span>
+                    <DarkModeOutlinedIcon />
                   </>
                 ) : (
                   <>
-                  <span>Light</span>
-                  <LightModeOutlinedIcon />
+                    <span>Light</span>
+                    <LightModeOutlinedIcon />
                   </>
                 )}
               </div>

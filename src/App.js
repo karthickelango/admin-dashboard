@@ -40,7 +40,6 @@ function App() {
                   <CssBaseline />
                   <Sidebar />
                   <main className="content">
-                    <Topbar />
                     <Routes>
                       <Route path="/" element={<Dashboard />} />
                       <Route path="/team" element={<Team />} />

@@ -16,19 +16,20 @@
 
 /* scroll bar style */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #e0e0e0;
+    background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #888;
+    background: #e6e8eb;
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar-track:hover {
-    background: #555;
+    background: transparent;
 }
 
 //   body {
@@ -323,6 +324,7 @@ nav a.active.nav-item .nav-link {
 .pro-sidebar {
     width: 260px;
     min-width: 260px;
+    height: calc(100% - 196px);
 }
 
 //side bar styl
@@ -335,6 +337,7 @@ nav a.active.nav-item .nav-link {
                     color: #ffffff;
                 }
             }
+
             &.active {
                 color: #52a9ff !important;
 
@@ -378,5 +381,26 @@ nav a.active.nav-item .nav-link {
 
     .MuiBox-root.css-1l8icbj {
         padding: 0px 10px;
+    }
+}
+
+.user-menu {
+    position: relative;
+    margin: 7px;
+    cursor: pointer;
+    border-radius: 8px;
+
+    &.light-mode {
+        &:hover {
+            background-color: #f1f3f5;
+            color: #000;
+        }
+    }
+
+    &.dark-mode {
+        &:hover {
+            background-color: #202425;
+            border-radius: 5px;
+        }
     }
 }

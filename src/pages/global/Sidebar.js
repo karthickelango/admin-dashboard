@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { useState } from 'react'
 import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar'
 import 'react-pro-sidebar/dist/css/styles.css'
-import { Box, IconButton, Typography, useTheme } from '@mui/material'
+import { Box, IconButton, InputBase, Typography, useTheme } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { tokens } from '../../theme'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
@@ -18,6 +18,10 @@ import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined'
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined'
 import DataContext from '../../context/DataContext'
 import UserMenu from './UserMenu'
+import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined'
+import SearchIcon from '@mui/icons-material/Search'
+
+
 
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
@@ -25,7 +29,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
   const colors = tokens(theme.palette.mode)
   return (
     <MenuItem active={selected === title} style={{ color: colors.gray[100] }} onClick={() => setSelected(title)} icon={icon}
-    className={theme.palette.mode === "dark"? 'dark-mode' : 'light-mode'}>
+      className={theme.palette.mode === "dark" ? 'dark-mode' : 'light-mode'}>
       <Typography>{title}</Typography>
       <Link to={to} />
     </MenuItem>
@@ -37,13 +41,12 @@ const Sidebar = () => {
   const colors = tokens(theme.palette.mode)
   const [isCollapsed, setIsCollapsed] = useState(false)
   const [selected, setSelected] = useState('Dashboard')
-  const {userDetail} = useContext(DataContext)
+  const { userDetail } = useContext(DataContext)
 
   return (
     <Box sx={{
       "& .pro-sidebar-inner": {
         background: `${colors.primary[400]} !important`,
-        borderRight: `1px solid ${colors.primary[900]}`
       },
       "& .pro-icon-wrapper": {
         backgroundColor: 'transparent !important'
@@ -53,13 +56,39 @@ const Sidebar = () => {
         margin: '5px 0px'
       },
       ".pro-sidebar .pro-menu .pro-menu-item": {
-        height:'auto'
-      }
+        height: 'auto'
+      },
+      borderRight: `1px solid ${colors.primary[900]}`
     }}>
+      {/* <div onClick={() => setIsCollapsed(!isCollapsed)}
+        icon={isCollapsed ? <IconButton><MenuOutlinedIcon /></IconButton> : undefined}
+        style={{
+          margin: '10px 0px 20px 0px',
+          color: colors.gray[100]
+        }}>Collapse</div> */}
+      <div style={{ borderBottom: `1px solid ${colors.primary[900]}`,  padding: '15px 15px' }}>
+        <div style={{ display: 'flex', paddingBottom: '15px' , justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ fontSize: '14px', fontWeight: '600', color: theme.palette.mode === "dark" ? '#ffffff' : '#000' }}>{userDetail.userType}</div>
+          {/* icons */}
+          <Box display='flex'>
+            <IconButton>
+              <NotificationsOutlinedIcon />
+            </IconButton>
+          </Box>
+        </div>
+        <div>
+          <Box display='flex' backgroundColor={colors.primary[400]} borderRadius='5px' sx={{border: `1px solid ${colors.primary[900]}`}}>
+            <InputBase sx={{ ml: 2, flex: 1 }} placeholder='Search' />
+            <IconButton type='button' sx={{ p: 1 }}>
+              <SearchIcon />
+            </IconButton>
+          </Box>
+        </div>
+      </div>
       <ProSidebar collapsed={isCollapsed}>
         <Menu iconShape='square'>
           {/* Logo and menu icon */}
-          <MenuItem
+          {/* <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
             icon={isCollapsed ? <IconButton><MenuOutlinedIcon /></IconButton> : undefined}
             style={{
@@ -82,7 +111,7 @@ const Sidebar = () => {
                 </IconButton>
               </Box>
             )}
-          </MenuItem>
+          </MenuItem> */}
           {/* Menu items */}
           <Box paddingLeft={isCollapsed ? undefined : '10%'}>
             <Item
@@ -91,7 +120,7 @@ const Sidebar = () => {
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected} />
-              <Typography variant='h6' color={colors.gray[300]} sx={{ m: "15px 0 5px 20px" }}>Data</Typography>
+            <Typography variant='h6' color={colors.gray[300]} sx={{ m: "15px 0 5px 20px" }}>Data</Typography>
             <Item
               title='Manage team'
               to='/team'
@@ -110,7 +139,7 @@ const Sidebar = () => {
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected} />
-              <Typography variant='h6' color={colors.gray[300]} sx={{ m: "15px 0 5px 20px" }}>Pages</Typography>
+            <Typography variant='h6' color={colors.gray[300]} sx={{ m: "15px 0 5px 20px" }}>Pages</Typography>
             <Item
               title='Profile Form'
               to='/form'
@@ -129,7 +158,7 @@ const Sidebar = () => {
               icon={<HelpOutlinedIcon />}
               selected={selected}
               setSelected={setSelected} /> */}
-              <Typography variant='h6' color={colors.gray[300]} sx={{ m: "15px 0 5px 20px" }}>Charts</Typography>
+            <Typography variant='h6' color={colors.gray[300]} sx={{ m: "15px 0 5px 20px" }}>Charts</Typography>
             <Item
               title='Bar Chart'
               to='/bar'
@@ -156,8 +185,8 @@ const Sidebar = () => {
               setSelected={setSelected} />
           </Box>
         </Menu>
-        <UserMenu />
       </ProSidebar>
+      <UserMenu />
     </Box>
   )
 }
