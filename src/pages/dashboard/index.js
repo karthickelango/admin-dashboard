@@ -172,7 +172,8 @@ const Dashboard = () => {
               </Box>
               <Box color={colors.gray[100]}>{transaction.date}</Box>
               <Box
-                backgroundColor={colors.greenAccent[500]}
+                color={colors.greenAccent[500]}
+                fontWeight='600'
                 p="5px 10px"
                 borderRadius="4px"
               >
