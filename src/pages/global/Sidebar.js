@@ -17,12 +17,12 @@ import TimelineOutlinedIcon from '@mui/icons-material/TimelineOutlined'
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined'
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined'
 import DataContext from '../../context/DataContext'
+import UserMenu from './UserMenu'
 
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme()
   const colors = tokens(theme.palette.mode)
-  console.log(theme)
   return (
     <MenuItem active={selected === title} style={{ color: colors.gray[100] }} onClick={() => setSelected(title)} icon={icon}
     className={theme.palette.mode === "dark"? 'dark-mode' : 'light-mode'}>
@@ -156,6 +156,7 @@ const Sidebar = () => {
               setSelected={setSelected} />
           </Box>
         </Menu>
+        <UserMenu />
       </ProSidebar>
     </Box>
   )

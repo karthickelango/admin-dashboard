@@ -113,9 +113,6 @@ const Team = () => {
       <Box display='flex' justifyContent='space-between' alignItems='center'>
         <Header title='TEAM' subtitle='Managing the Team Members' />
       </Box>
-      <Button variant="text" startIcon={<ShoppingCartRounded />}>
-        Add item
-      </Button>
       <Box margin='10px 0 0 0' height='50vh'
         sx={{
           '& .MuiDataGrid-root': {

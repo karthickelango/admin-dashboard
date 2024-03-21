@@ -15,7 +15,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../../constant/apiurl'
 
-const Topbar = () => {
+const UserMenu = () => {
   const { userDetail } = useContext(DataContext)
   const theme = useTheme()
   const colors = tokens(theme.palette.mode)
@@ -42,28 +42,52 @@ const Topbar = () => {
 
   return (
     <Box display='flex' justifyContent='space-between' p={2}>
-      {/* search box */}
-      <Box display='flex' backgroundColor={colors.primary[400]} borderRadius='3px'>
-        <InputBase sx={{ ml: 2, flex: 1 }} placeholder='Search' />
-        <IconButton type='button' sx={{ p: 1 }}>
-          <SearchIcon />
-        </IconButton>
-      </Box>
-      {/* icons */}
-      <Box display='flex'>
-        <IconButton onClick={colorMode.toggleColorMode}>
-          {theme.palette.mode === 'dark' ? (
-            <DarkModeOutlinedIcon />
-          ) : (
-            <LightModeOutlinedIcon />
-          )}
-        </IconButton>
-        <IconButton>
-          <NotificationsOutlinedIcon />
-        </IconButton>
-      </Box>
+      <div style={{ position: 'relative' }}>
+        <Avatar alt={userDetail.username} src={`${BASE_URL}/${userDetail.avatar}`}
+          id="basic-button"
+          aria-controls={open ? 'basic-menu' : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : undefined}
+          onClick={handleClick}
+          style={{ width: '30px', height: '30px' }} />
+        <Menu
+          id="menu"
+          profileMenu={profileMenu}
+          open={open}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          transformOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+        >
+          <MenuItem onClick={handleClose}><Link to='/myaccount'>My account</Link></MenuItem>
+          <MenuItem onClick={() => handelSignOut()}>Logout</MenuItem>
+          <MenuItem>
+            {/* icons */}
+            <Box display='flex'>
+              <div onClick={colorMode.toggleColorMode}>
+                {theme.palette.mode === 'dark' ? (
+                  <>
+                  <span>Dark</span>
+                  <DarkModeOutlinedIcon />
+                  </>
+                ) : (
+                  <>
+                  <span>Light</span>
+                  <LightModeOutlinedIcon />
+                  </>
+                )}
+              </div>
+            </Box>
+          </MenuItem>
+        </Menu>
+      </div>
     </Box>
   )
 }
 
-export default Topbar
+export default UserMenu
