@@ -41,7 +41,7 @@ const Dashboard = () => {
       </Box>
       {/* GRID & CHARTS */}
       <Box
-        height='85vh'
+        height='86vh'
         overflow='auto'
         display="grid"
         gridTemplateColumns="repeat(12, 1fr)"
@@ -55,7 +55,7 @@ const Dashboard = () => {
           display="flex"
           alignItems="center"
           justifyContent="center"
-          sx={{border: `1px solid ${colors.primary[900]}`, borderRadius: '5px'}}
+          sx={{ border: `1px solid ${colors.primary[900]}`, borderRadius: '5px' }}
         >
           <StatBox
             title="12,361"
@@ -75,7 +75,7 @@ const Dashboard = () => {
           display="flex"
           alignItems="center"
           justifyContent="center"
-          sx={{border: `1px solid ${colors.primary[900]}`, borderRadius: '5px'}}
+          sx={{ border: `1px solid ${colors.primary[900]}`, borderRadius: '5px' }}
         >
           <StatBox
             title="431,225"
@@ -95,7 +95,7 @@ const Dashboard = () => {
           display="flex"
           alignItems="center"
           justifyContent="center"
-          sx={{border: `1px solid ${colors.primary[900]}`, borderRadius: '5px'}}
+          sx={{ border: `1px solid ${colors.primary[900]}`, borderRadius: '5px' }}
         >
           <StatBox
             title="32,441"
@@ -115,7 +115,7 @@ const Dashboard = () => {
           display="flex"
           alignItems="center"
           justifyContent="center"
-          sx={{border: `1px solid ${colors.primary[900]}`, borderRadius: '5px'}}
+          sx={{ border: `1px solid ${colors.primary[900]}`, borderRadius: '5px' }}
         >
           <StatBox
             title="1,325,134"
@@ -131,52 +131,11 @@ const Dashboard = () => {
         </Box>
         {/* ROW 2 */}
         <Box
-          gridColumn="span 8"
-          gridRow="span 2"
-          backgroundColor={colors.primary[400]}
-          sx={{border: `1px solid ${colors.primary[900]}`, borderRadius: '5px'}}
-        >
-          <Box
-            mt="25px"
-            p="0 30px"
-            display="flex "
-            justifyContent="space-between"
-            alignItems="center"
-          >
-            <Box>
-              <Typography
-                variant="h5"
-                fontWeight="600"
-                color={colors.gray[100]}
-              >
-                Revenue Generated
-              </Typography>
-              <Typography
-                variant="h3"
-                fontWeight="bold"
-                color={colors.greenAccent[500]}
-              >
-                $59,342.32
-              </Typography>
-            </Box>
-            <Box>
-              <IconButton>
-                <DownloadOutlinedIcon
-                  sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
-                />
-              </IconButton>
-            </Box>
-          </Box>
-          <Box height="250px" m="-20px 0 0 0">
-            <LineChart isDashboard={true} />
-          </Box>
-        </Box>
-        <Box
           gridColumn="span 4"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
-          overflow="hidden"
-          sx={{border: `1px solid ${colors.primary[900]}`, borderRadius: '5px'}}
+          overflow="auto"
+          sx={{ border: `1px solid ${colors.primary[900]}`, borderRadius: '5px' }}
         >
           <Box
             display="flex"
@@ -222,13 +181,54 @@ const Dashboard = () => {
             </Box>
           ))}
         </Box>
+        <Box
+          gridColumn="span 8"
+          gridRow="span 2"
+          backgroundColor={colors.primary[400]}
+          sx={{ border: `1px solid ${colors.primary[900]}`, borderRadius: '5px' }}
+        >
+          <Box
+            mt="25px"
+            p="0 30px"
+            display="flex "
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            <Box>
+              <Typography
+                variant="h5"
+                fontWeight="600"
+                color={colors.gray[100]}
+              >
+                Revenue Generated
+              </Typography>
+              <Typography
+                variant="h3"
+                fontWeight="bold"
+                color={colors.greenAccent[500]}
+              >
+                $59,342.32
+              </Typography>
+            </Box>
+            <Box>
+              <IconButton>
+                <DownloadOutlinedIcon
+                  sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
+                />
+              </IconButton>
+            </Box>
+          </Box>
+          <Box height="250px" m="-20px 0 0 0">
+            <LineChart isDashboard={true} />
+          </Box>
+        </Box>
         {/* ROW 3 */}
         <Box
           gridColumn="span 4"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
           p="30px"
-          sx={{border: `1px solid ${colors.primary[900]}`, borderRadius: '5px'}}
+          sx={{ border: `1px solid ${colors.primary[900]}`, borderRadius: '5px' }}
         >
           <Typography variant="h5" fontWeight="600">
             Campaign
@@ -254,7 +254,7 @@ const Dashboard = () => {
           gridColumn="span 4"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
-          sx={{border: `1px solid ${colors.primary[900]}`, borderRadius: '5px'}}
+          sx={{ border: `1px solid ${colors.primary[900]}`, borderRadius: '5px' }}
         >
           <Typography
             variant="h5"
@@ -272,7 +272,7 @@ const Dashboard = () => {
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
           padding="30px"
-          sx={{border: `1px solid ${colors.primary[900]}`, borderRadius: '5px'}}
+          sx={{ border: `1px solid ${colors.primary[900]}`, borderRadius: '5px' }}
         >
           <Typography
             variant="h5"
