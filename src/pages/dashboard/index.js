@@ -30,7 +30,8 @@ const Dashboard = () => {
               color: colors.gray[100],
               fontSize: "10px",
               fontWeight: "bold",
-              padding: "10px 20px",
+              padding: "5px 10px",
+              border: `1px solid ${colors.primary[900]}`
             }}
           >
             <DownloadOutlinedIcon sx={{ mr: "10px" }} />
@@ -54,6 +55,7 @@ const Dashboard = () => {
           display="flex"
           alignItems="center"
           justifyContent="center"
+          sx={{border: `1px solid ${colors.primary[900]}`, borderRadius: '5px'}}
         >
           <StatBox
             title="12,361"
@@ -73,6 +75,7 @@ const Dashboard = () => {
           display="flex"
           alignItems="center"
           justifyContent="center"
+          sx={{border: `1px solid ${colors.primary[900]}`, borderRadius: '5px'}}
         >
           <StatBox
             title="431,225"
@@ -92,6 +95,7 @@ const Dashboard = () => {
           display="flex"
           alignItems="center"
           justifyContent="center"
+          sx={{border: `1px solid ${colors.primary[900]}`, borderRadius: '5px'}}
         >
           <StatBox
             title="32,441"
@@ -111,6 +115,7 @@ const Dashboard = () => {
           display="flex"
           alignItems="center"
           justifyContent="center"
+          sx={{border: `1px solid ${colors.primary[900]}`, borderRadius: '5px'}}
         >
           <StatBox
             title="1,325,134"
@@ -129,6 +134,7 @@ const Dashboard = () => {
           gridColumn="span 8"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
+          sx={{border: `1px solid ${colors.primary[900]}`, borderRadius: '5px'}}
         >
           <Box
             mt="25px"
@@ -170,6 +176,7 @@ const Dashboard = () => {
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
           overflow="hidden"
+          sx={{border: `1px solid ${colors.primary[900]}`, borderRadius: '5px'}}
         >
           <Box
             display="flex"
@@ -189,7 +196,7 @@ const Dashboard = () => {
               display="flex"
               justifyContent="space-between"
               alignItems="center"
-              borderBottom={`4px solid ${colors.primary[500]}`}
+              borderBottom={`1px solid ${colors.primary[900]}`}
               p="15px"
             >
               <Box>
@@ -221,6 +228,7 @@ const Dashboard = () => {
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
           p="30px"
+          sx={{border: `1px solid ${colors.primary[900]}`, borderRadius: '5px'}}
         >
           <Typography variant="h5" fontWeight="600">
             Campaign
@@ -246,6 +254,7 @@ const Dashboard = () => {
           gridColumn="span 4"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
+          sx={{border: `1px solid ${colors.primary[900]}`, borderRadius: '5px'}}
         >
           <Typography
             variant="h5"
@@ -263,6 +272,7 @@ const Dashboard = () => {
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
           padding="30px"
+          sx={{border: `1px solid ${colors.primary[900]}`, borderRadius: '5px'}}
         >
           <Typography
             variant="h5"
