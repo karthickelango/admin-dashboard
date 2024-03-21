@@ -305,14 +305,78 @@ nav a.active.nav-item .nav-link {
 .font-bold {
     color: var(--primary-color);
 }
+
 .edit-info {
     cursor: pointer;
 }
+
 .justify-content-end {
     display: flex;
     justify-content: end;
 }
+
 .fjsb {
     display: flex;
     justify-content: space-between;
+}
+
+.pro-sidebar {
+    width: 260px;
+    min-width: 260px;
+}
+
+//side bar styl
+.MuiBox-root .pro-menu {
+    .pro-menu-item {
+        &.dark-mode {
+            .pro-inner-item {
+                &:hover {
+                    background-color: #1a1d1e;
+                    color: #ffffff;
+                }
+            }
+            &.active {
+                color: #52a9ff !important;
+
+                .pro-inner-item {
+                    background-color: #10243e;
+
+                    &:hover {
+                        background-color: #10243e;
+                        color: #52a9ff;
+                    }
+                }
+            }
+        }
+
+        &.light-mode {
+            .pro-inner-item {
+                &:hover {
+                    background-color: #f8f9fa;
+                    color: #000;
+                }
+            }
+
+            &.active {
+                color: #006adc !important;
+
+                .pro-inner-item {
+                    background-color: #edf6ff;
+
+                    &:hover {
+                        background-color: #edf6ff;
+                        color: #006adc;
+                    }
+                }
+            }
+        }
+
+        .pro-inner-item {
+            border-radius: 8px;
+        }
+    }
+
+    .MuiBox-root.css-1l8icbj {
+        padding: 0px 10px;
+    }
 }

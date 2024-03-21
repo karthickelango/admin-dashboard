@@ -22,8 +22,10 @@ import DataContext from '../../context/DataContext'
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme()
   const colors = tokens(theme.palette.mode)
+  console.log(theme)
   return (
-    <MenuItem active={selected === title} style={{ color: colors.gray[100] }} onClick={() => setSelected(title)} icon={icon}>
+    <MenuItem active={selected === title} style={{ color: colors.gray[100] }} onClick={() => setSelected(title)} icon={icon}
+    className={theme.palette.mode === "dark"? 'dark-mode' : 'light-mode'}>
       <Typography>{title}</Typography>
       <Link to={to} />
     </MenuItem>
@@ -40,22 +42,18 @@ const Sidebar = () => {
   return (
     <Box sx={{
       "& .pro-sidebar-inner": {
-        background: `${colors.primary[400]} !important`
+        background: `${colors.primary[400]} !important`,
+        borderRight: `1px solid ${colors.primary[900]}`
       },
       "& .pro-icon-wrapper": {
         backgroundColor: 'transparent !important'
       },
       "& .pro-inner-item": {
-        padding: '5px 35px 5px 20px !important'
-      },
-      "& .pro-inner-item:hover": {
-        color: '#868dfb !important'
-      },
-      "& .pro-menu-item.active": {
-        color: '#6870fa !important'
+        padding: '5px 35px 5px 20px !important',
+        margin: '5px 0px'
       },
       ".pro-sidebar .pro-menu .pro-menu-item": {
-        height:'35px'
+        height:'auto'
       }
     }}>
       <ProSidebar collapsed={isCollapsed}>
