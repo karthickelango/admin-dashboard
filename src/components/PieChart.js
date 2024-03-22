@@ -3,10 +3,13 @@ import { useTheme } from '@emotion/react'
 import { tokens } from '../theme'
 import { ResponsivePie } from '@nivo/pie'
 import { mockPieData as data } from '../data/mockData'
+import { useOrder } from '../constant/supabaseApi'
 
 const PieChart = () => {
     const theme = useTheme()
     const colors = tokens(theme.palette.mode)
+    const { data: orders } = useOrder()
+    console.log(orders)
     return (
         <ResponsivePie
             data={data}

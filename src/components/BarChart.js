@@ -3,10 +3,12 @@ import { useTheme } from '@emotion/react'
 import { tokens } from '../theme'
 import { ResponsiveBar } from '@nivo/bar'
 import { mockBarData as data } from '../data/mockData'
+import { useOrder } from '../constant/supabaseApi'
 
 const BarChart = ({isDashboard = false}) => {
     const theme = useTheme()
     const colors = tokens(theme.palette.mode)
+    const {data: orders} = useOrder()
     return (
         <ResponsiveBar
             data={data}
