@@ -64,8 +64,9 @@ const Calendar = () => {
           <List>
             {
               currentEvents.map((event, i) => (
-                <ListItem key={i} sx={{ backgroundColor: colors.greenAccent[500], margin: '10px 0', borderRadius: '2px' }}>
+                <ListItem key={i} sx={{ backgroundColor: colors.greenAccent[900], margin: '10px 0', borderRadius: '8px' }}>
                   <ListItemText
+                    sx={{ color: colors.greenAccent[800] }}
                     primary={event.title}
                     secondary={
                       <Typography>
