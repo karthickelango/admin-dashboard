@@ -14,6 +14,7 @@ const Calendar = () => {
   const colors = tokens(theme.palette.mode)
   const [currentEvents, setCurrentEvents] = useState([])
 
+  console.log(currentEvents?.map(x => x._def.title))
   const handleDateClick = (selected) => {
     const title = prompt('Please enter a new title for your events')
     const calendarApi = selected.view.calendar
@@ -61,17 +62,19 @@ const Calendar = () => {
         >
           <Typography variant='h5'>Events</Typography>
           <List>
-            {currentEvents.map((event) => {
-              <ListItem key={event.id} sx={{ backgroundColor: colors.greenAccent[500], margin: '10px 0', borderRadius: '2px' }}>
-                <ListItemText
-                  primary={event.title}
-                  secondary={
-                    <Typography>
-                      {formatDate(event.start)}
-                    </Typography>
-                  } />
-              </ListItem>
-            })}
+            {
+              currentEvents.map((event, i) => (
+                <ListItem key={i} sx={{ backgroundColor: colors.greenAccent[500], margin: '10px 0', borderRadius: '2px' }}>
+                  <ListItemText
+                    primary={event.title}
+                    secondary={
+                      <Typography>
+                        {formatDate(event.start)}
+                      </Typography>
+                    } />
+                </ListItem>
+              ))
+            }
           </List>
         </Box>
 
@@ -99,8 +102,8 @@ const Calendar = () => {
             eventClick={handleEventClick}
             eventsSet={(events) => setCurrentEvents(events)}
             initialEvents={[
-              {id: '1', title: 'Event one', date: '2023-09-19'},
-              {id: '2', title: 'Event two', date: '2023-09-20'}
+              { id: '1', title: 'Event one', date: '2023-09-19' },
+              { id: '2', title: 'Event two', date: '2023-09-20' }
             ]}
           />
         </Box>
