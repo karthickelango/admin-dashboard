@@ -14,11 +14,16 @@ import GeographyChart from '../../components/GeographyChart'
 import StatBox from '../../components/StateBox'
 import ProgressCircle from '../../components/ProgressCircle'
 import DataContext from '../../context/DataContext'
+import { useAdminOrderList, useOrder, useOrderList } from '../../constant/supabaseApi'
 
 const Dashboard = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const { userDetail } = useContext(DataContext)
+  const { userDetail, noOfUser } = useContext(DataContext)
+  const {data: orders} = useOrder()
+  const {data: userItems} = useOrderList()
+  const total = orders?.reduce((sum, item) => sum += item.total, 0)
+
   return (
     <Box m='20px'>
       <Box display='flex' justifyContent='space-between' alignItems='center'>
@@ -58,8 +63,8 @@ const Dashboard = () => {
           sx={{ border: `1px solid ${colors.primary[900]}`, borderRadius: '5px' }}
         >
           <StatBox
-            title="12,361"
-            subtitle="Emails Sent"
+            title={orders?.length}
+            subtitle="Total orders"
             progress="0.75"
             increase="+14%"
             icon={
@@ -78,7 +83,7 @@ const Dashboard = () => {
           sx={{ border: `1px solid ${colors.primary[900]}`, borderRadius: '5px' }}
         >
           <StatBox
-            title="431,225"
+            title={total}
             subtitle="Sales Obtained"
             progress="0.50"
             increase="+21%"
@@ -98,8 +103,8 @@ const Dashboard = () => {
           sx={{ border: `1px solid ${colors.primary[900]}`, borderRadius: '5px' }}
         >
           <StatBox
-            title="32,441"
-            subtitle="New Clients"
+            title={noOfUser?.length}
+            subtitle="Number of users"
             progress="0.30"
             increase="+5%"
             icon={
@@ -149,9 +154,9 @@ const Dashboard = () => {
               Recent Transactions
             </Typography>
           </Box>
-          {mockTransactions.map((transaction, i) => (
+          {orders?.map((transaction, i) => (
             <Box
-              key={`${transaction.txId}-${i}`}
+              key={`${transaction.id}-${i}`}
               display="flex"
               justifyContent="space-between"
               alignItems="center"
@@ -164,20 +169,20 @@ const Dashboard = () => {
                   variant="h5"
                   fontWeight="600"
                 >
-                  {transaction.txId}
+                  {transaction.id}
                 </Typography>
                 <Typography color={colors.gray[100]}>
-                  {transaction.user}
+                  {transaction.customer_name}
                 </Typography>
               </Box>
-              <Box color={colors.gray[100]}>{transaction.date}</Box>
+              <Box color={colors.gray[100]}>{transaction.created_at}</Box>
               <Box
                 color={colors.greenAccent[500]}
                 fontWeight='600'
                 p="5px 10px"
                 borderRadius="4px"
               >
-                ${transaction.cost}
+                ${transaction.total}
               </Box>
             </Box>
           ))}

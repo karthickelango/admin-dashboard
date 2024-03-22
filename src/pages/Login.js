@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { LOGIN_URI, REGISTER_URI } from '../constant/apiurl';
 import LogInImg from '../assets/images/dashboard.svg'
+import { supabase } from '../supabaseClient';
 
 const Login = () => {
     const [email, setemail] = useState('')
@@ -13,6 +14,8 @@ const Login = () => {
     const [passwordMsg, setPasswordMsg] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
     const navigate = useNavigate()
+    const [loading, setLoading] = useState(false)
+
 
     useEffect(() => {
         fetchUrl()
@@ -43,6 +46,22 @@ const Login = () => {
             }
         }
     }
+     // signup
+//   const handelSignIn = async () => {
+//     try {
+//       setLoading(true)
+//       const response = await supabase.auth.signInWithPassword(
+//         { email: email, password: password }
+//       )
+//       const token = response.data
+//       navigate('/')
+//       window.location.reload()
+//       localStorage.setItem('token', token)
+//       setLoading(false)
+//     } catch (error) {
+//       console.log(error)
+//     }
+//   }
     const toggleState = () => {
         setShowPassword(!showPassword);
     };
