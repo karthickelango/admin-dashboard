@@ -23,6 +23,7 @@ const Dashboard = () => {
   const {data: orders} = useOrder()
   const {data: userItems} = useOrderList()
   const total = orders?.reduce((sum, item) => sum += item.total, 0)
+  console.log(userItems)
 
   return (
     <Box m='20px'>
