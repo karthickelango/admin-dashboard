@@ -1,34 +1,40 @@
-import React, { useContext } from 'react'
-import Header from '../../components/Header'
-import { Box, Button, IconButton, Typography, useTheme } from '@mui/material'
-import { tokens } from '../../theme'
-import { mockTransactions } from '../../data/mockData'
-import DownloadOutlinedIcon from '@mui/icons-material/DownloadOutlined'
-import EmailIcon from '@mui/icons-material/Email'
-import PointOfSaleIcon from '@mui/icons-material/PointOfSale'
-import PersonAddIcon from '@mui/icons-material/PersonAdd'
-import TrafficIcon from '@mui/icons-material/Traffic'
-import LineChart from '../../components/LineChart'
-import BarChart from '../../components/BarChart'
-import GeographyChart from '../../components/GeographyChart'
-import StatBox from '../../components/StateBox'
-import ProgressCircle from '../../components/ProgressCircle'
-import DataContext from '../../context/DataContext'
-import { useAdminOrderList, useOrder, useOrderList } from '../../constant/supabaseApi'
+import React, { useContext } from "react";
+import Header from "../../components/Header";
+import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
+import { tokens } from "../../theme";
+import { mockTransactions } from "../../data/mockData";
+import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
+import EmailIcon from "@mui/icons-material/Email";
+import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import TrafficIcon from "@mui/icons-material/Traffic";
+import LineChart from "../../components/LineChart";
+import BarChart from "../../components/BarChart";
+import GeographyChart from "../../components/GeographyChart";
+import StatBox from "../../components/StateBox";
+import ProgressCircle from "../../components/ProgressCircle";
+import DataContext from "../../context/DataContext";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import {
+  useAdminOrderList,
+  useOrder,
+  useOrderList,
+} from "../../constant/supabaseApi";
+import UploadFile from "../profileInfo/uploadFile";
 
 const Dashboard = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const { userDetail, noOfUser } = useContext(DataContext)
-  const {data: orders} = useOrder()
-  const {data: userItems} = useOrderList()
-  const total = orders?.reduce((sum, item) => sum += item.total, 0)
+  const { userDetail, noOfUser } = useContext(DataContext);
+  const { data: orders } = useOrder();
+  const { data: userItems } = useOrderList();
+  const total = orders?.reduce((sum, item) => (sum += item.total), 0);
 
   return (
-    <Box m='20px'>
-      <Box display='flex' justifyContent='space-between' alignItems='center'>
-        <Header title='DASHBOARD' />
-        <Box>
+    <Box m="20px">
+      <Box display="flex" justifyContent="space-between" alignItems="center">
+        <Header title="DASHBOARD" />
+        {/* <Box>
           <Button
             sx={{
               backgroundColor: colors.blueAccent[700],
@@ -36,18 +42,21 @@ const Dashboard = () => {
               fontSize: "10px",
               fontWeight: "bold",
               padding: "5px 10px",
-              border: `1px solid ${colors.primary[900]}`
+              border: `1px solid ${colors.primary[900]}`,
             }}
           >
             <DownloadOutlinedIcon sx={{ mr: "10px" }} />
             Download Reports
           </Button>
+        </Box> */}
+        <Box>
+          <UploadFile />
         </Box>
       </Box>
       {/* GRID & CHARTS */}
       <Box
-        height='86vh'
-        overflow='auto'
+        height="86vh"
+        overflow="auto"
         display="grid"
         gridTemplateColumns="repeat(12, 1fr)"
         gridAutoRows="140px"
@@ -60,7 +69,10 @@ const Dashboard = () => {
           display="flex"
           alignItems="center"
           justifyContent="center"
-          sx={{ border: `1px solid ${colors.primary[900]}`, borderRadius: '5px' }}
+          sx={{
+            border: `1px solid ${colors.primary[900]}`,
+            borderRadius: "5px",
+          }}
         >
           <StatBox
             title={orders?.length}
@@ -80,7 +92,10 @@ const Dashboard = () => {
           display="flex"
           alignItems="center"
           justifyContent="center"
-          sx={{ border: `1px solid ${colors.primary[900]}`, borderRadius: '5px' }}
+          sx={{
+            border: `1px solid ${colors.primary[900]}`,
+            borderRadius: "5px",
+          }}
         >
           <StatBox
             title={total}
@@ -100,7 +115,10 @@ const Dashboard = () => {
           display="flex"
           alignItems="center"
           justifyContent="center"
-          sx={{ border: `1px solid ${colors.primary[900]}`, borderRadius: '5px' }}
+          sx={{
+            border: `1px solid ${colors.primary[900]}`,
+            borderRadius: "5px",
+          }}
         >
           <StatBox
             title={noOfUser?.length}
@@ -120,7 +138,10 @@ const Dashboard = () => {
           display="flex"
           alignItems="center"
           justifyContent="center"
-          sx={{ border: `1px solid ${colors.primary[900]}`, borderRadius: '5px' }}
+          sx={{
+            border: `1px solid ${colors.primary[900]}`,
+            borderRadius: "5px",
+          }}
         >
           <StatBox
             title="1,325,134"
@@ -140,7 +161,10 @@ const Dashboard = () => {
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
           overflow="auto"
-          sx={{ border: `1px solid ${colors.primary[900]}`, borderRadius: '5px' }}
+          sx={{
+            border: `1px solid ${colors.primary[900]}`,
+            borderRadius: "5px",
+          }}
         >
           <Box
             display="flex"
@@ -178,7 +202,7 @@ const Dashboard = () => {
               <Box color={colors.gray[100]}>{transaction.created_at}</Box>
               <Box
                 color={colors.greenAccent[500]}
-                fontWeight='600'
+                fontWeight="600"
                 p="5px 10px"
                 borderRadius="4px"
               >
@@ -191,7 +215,10 @@ const Dashboard = () => {
           gridColumn="span 8"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
-          sx={{ border: `1px solid ${colors.primary[900]}`, borderRadius: '5px' }}
+          sx={{
+            border: `1px solid ${colors.primary[900]}`,
+            borderRadius: "5px",
+          }}
         >
           <Box
             mt="25px"
@@ -234,7 +261,10 @@ const Dashboard = () => {
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
           p="30px"
-          sx={{ border: `1px solid ${colors.primary[900]}`, borderRadius: '5px' }}
+          sx={{
+            border: `1px solid ${colors.primary[900]}`,
+            borderRadius: "5px",
+          }}
         >
           <Typography variant="h5" fontWeight="600">
             Campaign
@@ -260,7 +290,10 @@ const Dashboard = () => {
           gridColumn="span 4"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
-          sx={{ border: `1px solid ${colors.primary[900]}`, borderRadius: '5px' }}
+          sx={{
+            border: `1px solid ${colors.primary[900]}`,
+            borderRadius: "5px",
+          }}
         >
           <Typography
             variant="h5"
@@ -278,7 +311,10 @@ const Dashboard = () => {
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
           padding="30px"
-          sx={{ border: `1px solid ${colors.primary[900]}`, borderRadius: '5px' }}
+          sx={{
+            border: `1px solid ${colors.primary[900]}`,
+            borderRadius: "5px",
+          }}
         >
           <Typography
             variant="h5"
@@ -293,7 +329,7 @@ const Dashboard = () => {
         </Box>
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
